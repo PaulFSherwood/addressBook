@@ -25,9 +25,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    addressbookentry.cpp
+    addressbookentry.cpp \
+    addressbook.cpp
 
 HEADERS  += mainwindow.h \
-    addressbookentry.h
+    addressbookentry.h \
+    addressbook.h
 
 FORMS    += mainwindow.ui
