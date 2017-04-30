@@ -6,17 +6,76 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>593</width>
-    <height>522</height>
+    <width>432</width>
+    <height>483</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_3">
-    <item>
-     <layout class="QVBoxLayout" name="verticalLayout"/>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="1">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <widget class="QWidget" name="ListPage">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QListWidget" name="listWidget"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="detailsPage">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Birthday:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="nameEdit"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Phone Number:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Address:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPlainTextEdit" name="addressEdit"/>
+        </item>
+        <item row="3" column="1">
+         <widget class="QPlainTextEdit" name="phoneNumbersEdit"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDateEdit" name="birthdayEdit"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Name:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QDialogButtonBox" name="buttonBox">
+          <property name="standardButtons">
+           <set>QDialogButtonBox::Discard|QDialogButtonBox::Reset|QDialogButtonBox::Save</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -25,10 +84,19 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>593</width>
+     <width>432</width>
      <height>20</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuEntries">
+    <property name="title">
+     <string>Entries</string>
+    </property>
+    <addaction name="actionAdd"/>
+    <addaction name="actionEdit"/>
+    <addaction name="actionRemove"/>
+   </widget>
+   <addaction name="menuEntries"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -39,6 +107,21 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionAdd">
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </action>
+  <action name="actionEdit">
+   <property name="text">
+    <string>Edit</string>
+   </property>
+  </action>
+  <action name="actionRemove">
+   <property name="text">
+    <string>Remove</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
