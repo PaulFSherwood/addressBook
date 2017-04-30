@@ -16,10 +16,15 @@ public:
     explicit MainWindow(AddressBookController *controller, QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+
+    void createEntry();
+
 private:
     Ui::MainWindow *ui;
     AddressBookController *m_controller;
 
+    void setupConnections();
 };
 
 #endif // MAINWINDOW_H
