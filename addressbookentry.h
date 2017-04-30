@@ -9,6 +9,11 @@
 class AddressBookEntry : public QObject
 {
     Q_OBJECT
+
+    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(QString address READ address WRITE setAddress NOTIFY addressChanged)
+    Q_PROPERTY(QDate birthday READ birthday WRITE setBirthday NOTIFY birthdayChanged)
+    Q_PROPERTY(QStringList phoneNumbers READ phoneNumbers WRITE setPhoneNumbers NOTIFY phoneNumbersChanged)
 public:
     explicit AddressBookEntry(QObject *parent = 0);
     ~AddressBookEntry();

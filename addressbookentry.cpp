@@ -16,7 +16,11 @@ QString AddressBookEntry::name() const
 
 void AddressBookEntry::setName(const QString &name)
 {
-    m_name = name;
+    if (m_name != name) {
+        m_name = name;
+        emit nameChanged();
+    }
+
 }
 
 QString AddressBookEntry::address() const
@@ -26,7 +30,10 @@ QString AddressBookEntry::address() const
 
 void AddressBookEntry::setAddress(const QString &address)
 {
-    m_address = address;
+    if (m_address != address) {
+        m_address = address;
+    }
+
 }
 
 QDate AddressBookEntry::birthday() const
@@ -36,7 +43,10 @@ QDate AddressBookEntry::birthday() const
 
 void AddressBookEntry::setBirthday(const QDate &birthday)
 {
-    m_birthday = birthday;
+    if (m_birthday != birthday){
+        m_birthday = birthday;
+    }
+
 }
 
 QStringList AddressBookEntry::phoneNumbers() const
@@ -46,5 +56,8 @@ QStringList AddressBookEntry::phoneNumbers() const
 
 void AddressBookEntry::setPhoneNumbers(const QStringList &phoneNumbers)
 {
-    m_phoneNumbers = phoneNumbers;
+    if (m_phoneNumbers != phoneNumbers){
+        m_phoneNumbers = phoneNumbers;
+    }
+
 }
