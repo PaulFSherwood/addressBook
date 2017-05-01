@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QPushButton>
+
 MainWindow::MainWindow(AddressBookController *controller, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
@@ -53,6 +55,42 @@ void MainWindow::editEntry()
             ui->stackedWidget->setCurrentWidget(ui->detailsPage);
             // disable entries
             ui->menuEntries->setEnabled(false);
+            resetEntry();
+        }
+    }
+}
+
+void MainWindow::saveEntry()
+{
+    // get the entry
+    auto listItem = ui->listWidget->currentItem();
+    if (listItem) {
+        auto entry = m_entryMap.value(listItem);
+        if (entry) {
+            entry->setName(ui->nameEdit->text());
+            entry->setBirthday(ui->birthdayEdit->date());
+            entry->setAddress(ui->addressEdit->toPlainText());
+            entry->setPhoneNumbers(ui->phoneNumbersEdit->toPlainText().split("\n"));
+            listItem->setText(entry->name());
+            discardEntry();
+        }
+    }
+}
+
+void MainWindow::discardEntry()
+{
+    ui->stackedWidget->setCurrentWidget(ui->ListPage);
+    ui->menuEntries->setEnabled(true);
+}
+
+void MainWindow::resetEntry()
+{
+    // get the entry
+    auto listItem = ui->listWidget->currentItem();
+    if (listItem) {
+        auto entry = m_entryMap.value(listItem);
+        if (entry) {
+            // disable entries
             ui->nameEdit->setText(entry->name());
             ui->birthdayEdit->setDate(entry->birthday());
             ui->addressEdit->setPlainText(entry->address());
@@ -71,4 +109,10 @@ void MainWindow::setupConnections()
             this, &MainWindow::deleteEntry);
     connect(ui->actionEdit, &QAction::triggered,
             this, &MainWindow::editEntry);
+    connect(ui->buttonBox->button(QDialogButtonBox::Save), &QPushButton::clicked,
+            this, &MainWindow::saveEntry);
+    connect(ui->buttonBox->button(QDialogButtonBox::Discard), &QPushButton::clicked,
+            this, &MainWindow::saveEntry);
+    connect(ui->buttonBox->button(QDialogButtonBox::Reset), &QPushButton::clicked,
+            this, &MainWindow::saveEntry);
 }
