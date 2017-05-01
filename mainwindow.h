@@ -3,10 +3,13 @@
 
 #include "addressbookcontroller.h"
 #include <QMainWindow>
+#include <QHash>
 
 namespace Ui {
 class MainWindow;
 }
+
+class QListWidgetItem;
 
 class MainWindow : public QMainWindow
 {
@@ -19,10 +22,12 @@ public:
 public slots:
 
     void createEntry();
+    void deleteEntry();
 
 private:
     Ui::MainWindow *ui;
     AddressBookController *m_controller;
+    QHash<QListWidgetItem*, AddressBookEntry*> m_entryMap;
 
     void setupConnections();
 };

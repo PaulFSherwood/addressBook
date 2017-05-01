@@ -1,3 +1,4 @@
+#include <QtGlobal>
 #include "addressbookcontroller.h"
 
 AddressBookController::AddressBookController(
@@ -12,7 +13,10 @@ AddressBookEntry *AddressBookController::createEntry()
 {
     auto result = m_addressBook->createEntry();
     if(result != nullptr){
-        result->setName( tr("New Entry...") );
+        int randomValue = qrand();
+        QString aString = QString::number(randomValue);
+
+        result->setName( QString(tr("New Entry...%1")).arg(aString) );
     }
     return result;
 }
