@@ -42,6 +42,25 @@ void MainWindow::deleteEntry()
     }
 }
 
+void MainWindow::editEntry()
+{
+    // get the entry
+    auto listItem = ui->listWidget->currentItem();
+    if (listItem) {
+        auto entry = m_entryMap.value(listItem);
+        if (entry) {
+            // switch to other page
+            ui->stackedWidget->setCurrentWidget(ui->detailsPage);
+            // disable entries
+            ui->menuEntries->setEnabled(false);
+            ui->nameEdit->setText(entry->name());
+            ui->birthdayEdit->setDate(entry->birthday());
+            ui->addressEdit->setPlainText(entry->address());
+            ui->phoneNumbersEdit->setPlainText(entry->phoneNumbers().join("\n"));
+        }
+    }
+}
+
 void MainWindow::setupConnections()
 {
     // connect using older QT methods
@@ -50,4 +69,6 @@ void MainWindow::setupConnections()
     // better way to connect C++11 style
     connect(ui->actionRemove, &QAction::triggered,
             this, &MainWindow::deleteEntry);
+    connect(ui->actionEdit, &QAction::triggered,
+            this, &MainWindow::editEntry);
 }

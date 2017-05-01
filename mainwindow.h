@@ -23,6 +23,7 @@ public slots:
 
     void createEntry();
     void deleteEntry();
+    void editEntry();
 
 private:
     Ui::MainWindow *ui;
